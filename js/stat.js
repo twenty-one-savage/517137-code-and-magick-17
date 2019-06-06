@@ -68,11 +68,8 @@ window.renderStatistics = function (ctx, names, times) {
 
     ctx.fillStyle = '#000';
     drawText(ctx, i, times, names);
-    if (names[i] === 'Вы') {
-      ctx.fillStyle = 'rgba(255, 0, 0, 1)';
-    } else {
-      ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random().toFixed(2) + ')';
-    }
+    // Залитие столбца цветом, в зависимости от того Вы это или нет
+    names[i] === 'Вы' ? ctx.fillStyle = 'rgba(255, 0, 0, 1)' : ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random().toFixed(2) + ')';
     drawDiagram(ctx, i, currentBarHeight);
   }
 };
