@@ -1,9 +1,7 @@
 'use strict';
 // Создаём пустой массив, который в дальнейшем будем заполянять, массив должен состоять из 4 элементов, сразу указываю
 var wizards =[];
-// Не знаю как лучше, завести константу?
-wizards.length = 4;
-// WIZARDS_LENGTH = 4;
+var WIZARDS_QUANTITY = 4;
 
 // Показываем окно
 var setup = document.querySelector('.setup');
@@ -15,7 +13,7 @@ var similarListElement = document.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 // Мокаем данные
-var wizardNames = [
+var WIZARD_NAMES = [
   'Иван',
   'Хуан Себастьян',
   'Мария',
@@ -26,7 +24,7 @@ var wizardNames = [
   'Вашингтон'
 ];
 
-var wizardSurnames = [
+var WIZARD_SURNAMES = [
   'да Марья',
   'Верон',
   'Мирабелла',
@@ -37,7 +35,7 @@ var wizardSurnames = [
   'Ирвинг'
 ];
 
-var coatColors = [
+var COAT_COLORS = [
   'rgb(101, 137, 164)',
   'rgb(241, 43, 107)',
   'rgb(146, 100, 161)',
@@ -46,7 +44,7 @@ var coatColors = [
   'rgb(0, 0, 0)'
 ];
 
-var eyesColors = [
+var EYES_COLORS = [
   'black',
   'red',
   'blue',
@@ -64,11 +62,11 @@ var getRandomInit = function (arr) {
 
 // Функция для наполнения массива
 var fillArray = function (arr) {
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 0; i < WIZARDS_QUANTITY; i++) {
     arr[i] = {
-      name: wizardNames[getRandomInit(wizardNames)] + ' ' + wizardSurnames[getRandomInit(wizardSurnames)],
-      coatColor: coatColors[getRandomInit(coatColors)],
-      eyesColor: eyesColors[getRandomInit(eyesColors)]
+      name: WIZARD_NAMES[getRandomInit(WIZARD_NAMES)] + ' ' + WIZARD_SURNAMES[getRandomInit(WIZARD_SURNAMES)],
+      coatColor: COAT_COLORS[getRandomInit(COAT_COLORS)],
+      eyesColor: EYES_COLORS[getRandomInit(EYES_COLORS)]
     }
   }
 };
@@ -92,7 +90,7 @@ var makeFragment = function (arr) {
   // Создаем пустой фрагмент
   var fragment = document.createDocumentFragment();
   // Далее вставляем, в ранее созданный фрагмент, волшебников
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 0; i < WIZARDS_QUANTITY; i++) {
     fragment.appendChild(renderWizard(arr[i]));
   }
   return fragment;
