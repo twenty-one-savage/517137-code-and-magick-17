@@ -53,7 +53,7 @@ var EYES_COLORS = [
 ];
 
 // Показываем окно на странице
-setup.classList.remove('hidden');
+// setup.classList.remove('hidden');
 
 // Функция для нахождения случайного индекса массива
 var getRandomInit = function (arr) {
@@ -102,4 +102,105 @@ similarListElement.appendChild(makeFragment(wizards));
 // Отображаем блок "список похожих магов" на странице
 setup.querySelector('.setup-similar').classList.remove('hidden');
 
+// module4-task1
 
+var ENTER_KEYCODE = 13;
+var ESC_KEYCODE = 27;
+
+// 1 пункт
+var setupOpen = document.querySelector('.setup-open');
+var setupCLose = setup.querySelector('.setup-close');
+
+// // 2 пункт
+var wizardForm = document.querySelector('.setup-wizard-form');
+var wizardName = wizardForm.querySelector('.setup-user-name');
+
+// 3 пункт
+var wizardCoat = document.querySelector('.setup-wizard .wizard-coat');
+
+// 4 пункт
+var wizardEyes = document.querySelector('.setup-wizard .wizard-eyes');
+
+// 5 пункт
+var wizardFireball = document.querySelector('.setup-fireball-wrap');
+
+var FIREBALL_COLORS = [
+  '#ee4830',
+  '#30a8ee',
+  '#5ce6c0',
+  '#e848d5',
+  '#e6e848'
+];
+
+// При нажатии на Escape происходит закрытие окна
+var popupEscPressHandler = function (evt) {
+  if (evt.keyCode === ESC_KEYCODE) {
+    closePopup();
+  }
+};
+
+// // При нажатии на Enter происходит открытие окна
+// var popupEnterPressHandler = function (evt) {
+//   if (evt.keyCode === ENTER_KEYCODE) {
+//     openPopup();
+//   }
+// };
+
+// Функция для открытия окна
+var openPopup = function () {
+  setup.classList.remove('hidden');
+  if (wizardName.onfocus) {
+    document.removeEventListener('keydown', popupEscPressHandler);
+  } else {
+    document.addEventListener('keydown', popupEscPressHandler);
+  }
+};
+
+// Функция для закрытия окна
+var closePopup = function() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', popupEscPressHandler);
+};
+
+// 1 пункт
+setupOpen.addEventListener('click', openPopup);
+
+setupOpen.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    openPopup();
+  }
+});
+
+setupCLose.addEventListener('click', closePopup);
+
+setupCLose.addEventListener('keydown', function (evt) {
+  if (evt.keyCode === ENTER_KEYCODE) {
+    closePopup();
+  }
+});
+
+
+// setupCLose.addEventListener('keydown', function (evt) {
+//   if (evt.keyCode === ESC_KEYCODE) {
+//   setup.classList.add('hidden');
+//   }
+// });
+
+// 2 пункт
+// Добавляем минимальное количество символов при вводе имени волшебника
+// wizardName.setAttribute('minlength', 2);
+
+// 3 пункт
+wizardCoat.addEventListener('click', function () {
+  wizardCoat.style.fill = COAT_COLORS[getRandomInit(COAT_COLORS)];
+});
+
+// 4 пункт
+wizardEyes.addEventListener('click',function () {
+  wizardEyes.style.fill = EYES_COLORS[getRandomInit(EYES_COLORS)];
+});
+
+// 5 пункт
+wizardFireball.addEventListener('click', function () {
+  wizardFireball.style.backgroundColor = FIREBALL_COLORS[getRandomInit(FIREBALL_COLORS)];
+});
