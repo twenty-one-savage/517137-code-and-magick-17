@@ -146,14 +146,18 @@ var popupEscPressHandler = function (evt) {
 //   }
 // };
 
+// Функция, которая при фокусе на инпут удаляет обработчик закрытия окна при нажатии на escape
+var removeEscHandler = function () {
+  wizardName.addEventListener('focus', function () {
+    document.removeEventListener('keydown', popupEscPressHandler);
+  });
+};
+
 // Функция для открытия окна
 var openPopup = function () {
   setup.classList.remove('hidden');
-  if (wizardName.onfocus) {
-    document.removeEventListener('keydown', popupEscPressHandler);
-  } else {
-    document.addEventListener('keydown', popupEscPressHandler);
-  }
+  document.addEventListener('keydown', popupEscPressHandler);
+  removeEscHandler();
 };
 
 // Функция для закрытия окна
